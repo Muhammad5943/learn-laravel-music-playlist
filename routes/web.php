@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\{Route, Auth};
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\{Route, Auth};
 Auth::routes(/* ['veriry' => true] (Jika ingin menggunakan verify email) */);
 
 Route::get('/', HomeController::class)->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+});
