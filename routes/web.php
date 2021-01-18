@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Band\AlbumController;
 use App\Http\Controllers\Band\BandController;
 use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\DashboardController;
@@ -37,5 +38,10 @@ Route::middleware('auth')->group(function () {
 
         //Band Destroy
         Route::delete('{band:slug}/delete', [BandController::class, 'destroy'])->name('bands.delete');
+    });
+
+    Route::prefix('albums')->group(function () {
+        Route::get('create', [AlbumController::class, 'create'])->name('albums.create');
+        Route::post('create', [AlbumController::class, 'store']);
     });
 });
