@@ -26,7 +26,7 @@
                     <td>{{ $band->genres()->get()->implode('name' , ', ') }}</td> {{--  implode('field that wanna show', 'separation')  --}}
                     <td>
                         <a href="{{ route('bands.edit', $band->slug) }}" class="btn btn-primary">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <div endpoint="{{ route('bands.delete', $band) }}" class="delete d-inline"></div>
                     </td>
                 </tr>
             @endforeach
@@ -37,4 +37,6 @@
                                 when you using wanted to used bootstrap in default on pagination you must setting  on AppServiceProvider
                                 in boot() method and type "Paginator::useBootstrap();"
                             --}}
+
+    <div id="delete"></div>
 @endsection

@@ -94,4 +94,11 @@ class BandController extends Controller
 
         return back()->with('success', 'Band was Updated');
     }
+
+    public function destroy(Band $band)
+    {
+        Storage::delete($band->thumbnail);
+        $band->genres()->detach();
+        $band->delete();
+    }
 }
