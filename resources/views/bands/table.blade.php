@@ -25,8 +25,8 @@
                     <td>{{ $band->name }}</td>
                     <td>{{ $band->genres()->get()->implode('name' , ', ') }}</td> {{--  implode('field that wanna show', 'separation')  --}}
                     <td>
+                        <a href="{{ route('bands.edit', $band->slug) }}" class="btn btn-primary">Edit</a>
                         <a href="" class="btn btn-danger">Delete</a>
-                        <a href="" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach
