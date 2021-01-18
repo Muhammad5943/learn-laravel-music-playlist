@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class BandController extends Controller
 {
+    public function table()
+    {
+        return view('bands.table', [
+            'bands' => Band::latest()->paginate(16),
+        ]);
+    }
+
     public function create()
     {
         $genres = Genre::get();
