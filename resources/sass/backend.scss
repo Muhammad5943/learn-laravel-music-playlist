@@ -1,0 +1,16 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Select2 from node_modules
+@import '~select2/src/scss/core'
+
+
+// For Declare adding css and js properties you must declare on wabpack.mix.js too
+
+// You need select2 from node_modules here to compile it (by using package named search node_modules -> ctrl+shift+p -> type select2/src/scss/core

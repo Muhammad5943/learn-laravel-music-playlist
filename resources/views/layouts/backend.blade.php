@@ -1,5 +1,21 @@
 @extends('layouts.base')
 
+@section('baseStyles') {{--  way to declear css properties  --}}
+
+    {{--  Styles  --}}
+    <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
+
+@endsection
+
+@section('baseScripts') {{--  way to declear js properties  --}}
+
+    {{--  Scripts  --}}
+    <script src="{{ asset('js/backend.js') }}"></script>
+
+    @stack('scripts')
+
+@endsection
+
 @section('body')
     <div class="container-fluid py-3">
         <div class="row">
@@ -12,4 +28,8 @@
         </div>
     </div>
 @endsection
+
+{{--
+    For Declare adding css and js properties you must declare on wabpack.mix.js too
+--}}
 
