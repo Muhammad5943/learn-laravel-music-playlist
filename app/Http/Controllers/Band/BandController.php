@@ -23,7 +23,9 @@ class BandController extends Controller
         $genres = Genre::get();
 
         return view('bands.create', [
-            'genres' => $genres
+            'genres' => $genres,
+            'band' => new Band,
+            'submit' => 'Create'
         ]);
     }
 
@@ -34,7 +36,7 @@ class BandController extends Controller
 
         $request->validate([
             'name' => 'required|unique:bands,name',
-            'thumbnail' => request('thumbnail') ? 'image|mimes:jpg,jpeg,png,gif' : '',
+            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,gif', /* cara lain untuk membuat if statement dengan null value */
             'genres' => 'required|array'
         ]);
 
@@ -53,7 +55,8 @@ class BandController extends Controller
     {
         return view('bands.edit', [
             'band' => $band,
-            'genres' => Genre::get()
+            'genres' => Genre::get(),
+            'submit' => 'Update'
         ]);
     }
 
@@ -64,7 +67,7 @@ class BandController extends Controller
 
         $request->validate([
             'name' => 'required|unique:bands,name,' . $band->id,
-            'thumbnail' => request('thumbnail') ? 'image|mimes:jpg,jpeg,png,gif' : '',
+            'thumbnail' => request('thumbnail') ? 'image|mimes:jpg,jpeg,png,gif' : '', /* cara untuk membuat if statement dengan null value */
             'genres' => 'required|array'
         ]);
 

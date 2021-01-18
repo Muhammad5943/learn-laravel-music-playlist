@@ -25,3 +25,11 @@
         <a href="#" class="list-group-item list-group-item-action">Table</a>
     </div>
 </div>
+
+<div class="mb-4">
+    <div class="list-group">
+        <a href="{{ route('home') }}" class="list-group-item list-group-item-action" style="background-color: red">
+            <div style="color: white; text-align: center">Home</div>
+        </a>
+    </div>
+</div>
