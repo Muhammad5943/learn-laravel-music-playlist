@@ -1,4 +1,4 @@
-<div class="form-group py-5">
+    <div class="form-group py-5">
     <label for="thumbnail">Thumbnail</label>
     <input type="file" name="thumbnail" id="thumbnail" class="form-control-file">
     @error('thumbnail')
@@ -27,4 +27,4 @@
     @enderror
 </div>
 
-<button type="submit" class="btn btn-primary">{{ $submit }}</button>
+<button type="submit" class="btn btn-primary">{{ $submitLable }}</button>

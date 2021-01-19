@@ -47,5 +47,9 @@ Route::middleware('auth')->group(function () {
 
         // Album Table
         Route::get('table', [AlbumController::class, 'table'])->name('albums.table');
+
+        // Album Edit
+        Route::get('{album:slug}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
+        Route::put('{album:slug}/edit', [AlbumController::class, 'update']);
     });
 });

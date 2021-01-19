@@ -26,7 +26,7 @@ class BandController extends Controller
         return view('bands.create', [
             'genres' => $genres,
             'band' => new Band,
-            'submit' => 'Create'
+            'submitLable' => 'Create'
         ]);
     }
 
@@ -57,7 +57,7 @@ class BandController extends Controller
         return view('bands.edit', [
             'band' => $band,
             'genres' => Genre::get(),
-            'submit' => 'Update'
+            'submitLable' => 'Update'
         ]);
     }
 

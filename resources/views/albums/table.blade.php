@@ -1,6 +1,10 @@
 @extends('layouts.backend', ['title' => $title])
 
 @section('content')
+    @if (session('status'))
+        <div class="alert alert-success">{{ session('status') }}</div>
+    @endif
+
     <div class="card-header">{{$title}}</div>
     <div class="card-body">
         <table class="table table-striped">
@@ -19,8 +23,7 @@
                         <td>{{ $album->band->name }}</td>
                         <td>{{ $album->name }}</td>
                         <td>
-                            <a href="#" class="btn btn-primary">Edit</a>
-                            {{--  {{ route('albums.edit', $album) }}  --}}
+                            <a href="{{ route('albums.edit', $album) }}" class="btn btn-primary">Edit</a>
                             <div endpoint="" class="delete d-inline"></div>
                             {{--  {{ route('albums.delete', $album) }}  --}}
                         </td>

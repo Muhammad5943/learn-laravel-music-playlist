@@ -14,14 +14,16 @@ class AlbumController extends Controller
     {
         return view('albums.create', [
             'title' => 'New Album',
-            'bands' => Band::get()
+            'bands' => Band::get(),
+            'submitLable' => 'Create',
+            'album' => new Album
         ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:albums',
             'year' => 'required',
             'band' => 'required'
         ]);
@@ -44,5 +46,33 @@ class AlbumController extends Controller
             'albums' => Album::latest()->paginate(16),
             'title' => 'Album'
         ]);
+    }
+
+    public function edit(Album $album)
+    {
+        return view('albums.edit', [
+            'title' => "Edit Album: {$album->name}",
+            'album' => $album,
+            'bands' => Band::get(),
+            'submitLable' => 'Update'
+        ]);
+    }
+
+    public function update(Album $album ,Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:albums,name,' . $album->id,
+            'year' => 'required',
+            'band' => 'required'
+        ]);
+
+        $album->update([
+            'name' => $request->name,
+            'slug' => Str::slug(request('name')),
+            'band_id' => request('band'),
+            'year' => $request->year
+        ]);
+
+        return redirect()->route('albums.table')->with('status', 'Album was Updated');
     }
 }
