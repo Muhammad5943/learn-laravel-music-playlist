@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Band;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Band\BandRequest;
 use Illuminate\Support\Str;
 use App\Models\Band;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class BandController extends Controller
@@ -30,19 +30,19 @@ class BandController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(BandRequest $bandrequest)
     {
         // dd($request->genres);
         // dd(request('genres'));
 
-        $request->validate([
-            'name' => 'required|unique:bands,name',
-            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,gif', /* cara lain untuk membuat if statement dengan null value */
-            'genres' => 'required|array'
-        ]);
+        // $request->validate([
+        //     'name' => 'required|unique:bands,name',
+        //     'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,gif', /* cara lain untuk membuat if statement dengan null value */
+        //     'genres' => 'required|array'
+        // ]);
 
         $band = Band::Create([
-            'name' => $request->name,
+            'name' => $bandrequest->name,
             'slug' => Str::slug(request('name')),
             'thumbnail' => request()->file('thumbnail') ? request()->file('thumbnail')->store('images/band') : null
         ]);
@@ -61,16 +61,10 @@ class BandController extends Controller
         ]);
     }
 
-    public function update(Band $band, Request $request)
+    public function update(Band $band, BandRequest $request)
     {
         // dd($request->genres);
         // dd(request('genres'));
-
-        $request->validate([
-            'name' => 'required|unique:bands,name,' . $band->id,
-            'thumbnail' => request('thumbnail') ? 'image|mimes:jpg,jpeg,png,gif' : '', /* cara untuk membuat if statement dengan null value */
-            'genres' => 'required|array'
-        ]);
 
         if (request('thumbnail')) {
 
@@ -103,6 +97,7 @@ class BandController extends Controller
     {
         Storage::delete($band->thumbnail);
         $band->genres()->detach();
+        $band->albums()->delete();
         $band->delete();
     }
 }

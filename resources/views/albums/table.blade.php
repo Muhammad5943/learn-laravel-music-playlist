@@ -13,6 +13,7 @@
                     <th>#</th>
                     <th>Band</th>
                     <th>Name</th>
+                    <th>Year</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                         <td>{{ $albums->count() * ($albums->currentPage() - 1) + $loop->iteration }}</td>
                         <td>{{ $album->band->name }}</td>
                         <td>{{ $album->name }}</td>
+                        <td>{{ $album->year }}</td>
                         <td>
                             <a href="{{ route('albums.edit', $album) }}" class="btn btn-primary">Edit</a>
                             <div endpoint="{{ route('albums.delete', $album) }}" class="delete d-inline"></div>
