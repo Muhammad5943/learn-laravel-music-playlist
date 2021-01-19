@@ -21,7 +21,7 @@
                     </select>
 
                     @error('band')
-                        <div class="text-danger mt2">{{$message}}</div>
+                        <div class="text-danger mt2">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -29,7 +29,7 @@
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" class="form-control" />
                     @error('name')
-                        <div class="text-danger mt-2">{{$message}}</div>
+                        <div class="text-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -43,7 +43,7 @@
                     </select>
 
                     @error('year')
-                        <div class="text-danger mt-2">{{$message}}</div>
+                        <div class="text-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
 

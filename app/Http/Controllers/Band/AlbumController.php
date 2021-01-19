@@ -37,4 +37,11 @@ class AlbumController extends Controller
 
         return back()->with('status', 'Album was Created into '. $band->name);
     }
+
+    public function table(Album $album)
+    {
+        return view('albums.table', [
+            'albums' => Album::latest()->paginate(16),
+        ]);
+    }
 }

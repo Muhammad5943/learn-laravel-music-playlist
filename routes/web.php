@@ -41,7 +41,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('albums')->group(function () {
+        // Album Store
         Route::get('create', [AlbumController::class, 'create'])->name('albums.create');
         Route::post('create', [AlbumController::class, 'store']);
+
+        // Album Table
+        Route::get('table', [AlbumController::class, 'table'])->name('albums.table');
     });
 });
