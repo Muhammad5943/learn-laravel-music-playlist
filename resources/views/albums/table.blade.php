@@ -24,8 +24,7 @@
                         <td>{{ $album->name }}</td>
                         <td>
                             <a href="{{ route('albums.edit', $album) }}" class="btn btn-primary">Edit</a>
-                            <div endpoint="" class="delete d-inline"></div>
-                            {{--  {{ route('albums.delete', $album) }}  --}}
+                            <div endpoint="{{ route('albums.delete', $album) }}" class="delete d-inline"></div>
                         </td>
                     </tr>
                 @endforeach
@@ -39,6 +38,4 @@
                                 when you using wanted to used bootstrap in default on pagination you must setting  on AppServiceProvider
                                 in boot() method and type "Paginator::useBootstrap();"
                             --}}
-
-    <div id="delete"></div>
 @endsection

@@ -75,4 +75,9 @@ class AlbumController extends Controller
 
         return redirect()->route('albums.table')->with('status', 'Album was Updated');
     }
+
+    public function destroy(Album $album)
+    {
+        $album->delete();
+    }
 }

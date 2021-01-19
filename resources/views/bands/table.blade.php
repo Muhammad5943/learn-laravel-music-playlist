@@ -40,7 +40,4 @@
                                     in boot() method and type "Paginator::useBootstrap();"
                                 --}}
     </div>
-
-
-    <div id="delete"></div>
 @endsection
