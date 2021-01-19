@@ -15,6 +15,7 @@ class BandController extends Controller
     {
         return view('bands.table', [
             'bands' => Band::latest()->paginate(16),
+            'title' => 'Band'
         ]);
     }
 

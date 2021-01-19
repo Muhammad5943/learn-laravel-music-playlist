@@ -42,6 +42,7 @@ class AlbumController extends Controller
     {
         return view('albums.table', [
             'albums' => Album::latest()->paginate(16),
+            'title' => 'Album'
         ]);
     }
 }

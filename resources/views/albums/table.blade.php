@@ -1,39 +1,36 @@
-@extends('layouts.backend')
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('.select2multiple').select2();
-        });
-    </script>
-@endpush
+@extends('layouts.backend', ['title' => $title])
 
 @section('content')
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Band</th>
-                <th>Name</th>
-                <th>Year</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($albums as $album)
+    <div class="card-header">{{$title}}</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>{{ $albums->count() * ($albums->currentPage() - 1) + $loop->iteration }}</td>
-                    <td>{{ $album->band->name }}</td>
-                    <td>{{ $album->name }}</td>
-                    <td>{{ $album->year }}</td>
-                    <td>
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </td>
+                    <th>#</th>
+                    <th>Band</th>
+                    <th>Name</th>
+                    <th>Action</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($albums as $album)
+                    <tr>
+                        <td>{{ $albums->count() * ($albums->currentPage() - 1) + $loop->iteration }}</td>
+                        <td>{{ $album->band->name }}</td>
+                        <td>{{ $album->name }}</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                            {{--  {{ route('albums.edit', $album) }}  --}}
+                            <div endpoint="" class="delete d-inline"></div>
+                            {{--  {{ route('albums.delete', $album) }}  --}}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        {{ $albums->links() }}
+    </div>
 
     {{--  {{ $bands->links() }}  --}} {{--
                                 when you using wanted to used bootstrap in default on pagination you must setting  on AppServiceProvider
