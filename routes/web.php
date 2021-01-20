@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Band\AlbumController;
 use App\Http\Controllers\Band\BandController;
 use App\Http\Controllers\Band\GenreController;
+use App\Http\Controllers\Band\LyricController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,9 @@ Route::middleware('auth')->group(function () {
 
         // Album Destroy
         Route::delete('{album:slug}/delete', [AlbumController::class, 'destroy'])->name('albums.delete');
+
+        // API for getAlbumByBandId
+        Route::get('/get-album-by-{band}', [AlbumController::class, 'getAlbumsByBandId']);
     });
 
     Route::prefix('genres')->group(function () {
@@ -71,5 +75,21 @@ Route::middleware('auth')->group(function () {
 
         // Genre Delete
         Route::delete('{genre:slug}/delete', [GenreController::class, 'destroy'])->name('genres.delete');
+    });
+
+    Route::prefix('lyrics')->group(function () {
+        // Lyrics Create
+        Route::get('create', [LyricController::class, 'create'])->name('lyrics.create');
+        Route::post('create', [LyricController::class, 'store']);
+
+        // Lyrics Table
+        Route::get('table', [LyricController::class, 'table'])->name('lyrics.table');
+
+        // Lyrics Update
+        Route::get('{lyric:slug}/edit', [LyricController::class, 'edit'])->name('lyrics.edit');
+        Route::put('{lyric:slug}/edit', [LyricController::class, 'update']);
+
+        // Lyrics Delete
+        Route::delete('{lyric:slug}/delete', [LyricController::class, 'destroy'])->name('lyrics.delete');
     });
 });
