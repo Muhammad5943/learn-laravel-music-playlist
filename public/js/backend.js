@@ -1971,20 +1971,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Create(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
+  //  const [input/state field table (value), dispatcher/ variable] = useState([])
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      bands = _useState2[0],
-      setBands = _useState2[1];
+      message = _useState2[0],
+      setMessage = _useState2[1];
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      albums = _useState4[0],
-      setAlbums = _useState4[1];
+      bands = _useState4[0],
+      setBands = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      bandId = _useState6[0],
-      setBandId = _useState6[1];
+      albums = _useState6[0],
+      setAlbums = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      bandId = _useState8[0],
+      setBandId = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      albumId = _useState10[0],
+      setAlbumId = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      title = _useState12[0],
+      setTitle = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      body = _useState14[0],
+      setBody = _useState14[1];
+
+  var request = {
+    // request value which sent through backend
+    //  Request: Field Table (from backend)
+    band: bandId,
+    album: albumId,
+    title: title,
+    body: body
+  };
 
   var getBands = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
@@ -2016,19 +2046,36 @@ function Create(props) {
 
   var store = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(e) {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              e.preventDefault(); // let response = await axios.post(props.endpoint)
-              // console.log(response.data);
+              e.preventDefault(); // console.log(request);
 
-            case 1:
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default().post(props.endpoint, request);
+
+            case 4:
+              response = _context2.sent;
+              // props is a method which has function to get the properties in JS statement that render in ReactDOM
+              // console.log(response.data);
+              setMessage(response.data.message);
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](1);
+              console.log(_context2.t0.message);
+
+            case 11:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2);
+      }, _callee2, null, [[1, 8]]);
     }));
 
     return function store(_x) {
@@ -2082,59 +2129,98 @@ function Create(props) {
     getBands();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-    className: "card",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "card-header",
-      children: props.title
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: "card-body",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-        onSubmit: store,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-            htmlFor: "band",
-            children: "Band"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
-            onChange: getAlbumBySelectedBand,
-            name: "band",
-            id: "band",
-            className: "form-control",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
-              value: null,
-              children: "Choose Band"
-            }), bands.map(function (band) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
-                value: band.id,
-                children: band.name
-              }, band.id);
+    children: [message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: "alert alert-success",
+      role: "alert",
+      children: message
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "card",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "card-header",
+        children: props.title
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+        className: "card-body",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+          onSubmit: store,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+              htmlFor: "band",
+              children: "Band"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
+              onChange: getAlbumBySelectedBand,
+              name: "band",
+              id: "band",
+              className: "form-control",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+                value: null,
+                children: "Choose Band"
+              }), bands.map(function (band) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+                  value: band.id,
+                  children: band.name
+                }, band.id);
+              })]
             })]
-          })]
-        }), albums.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-          className: "form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
-            htmlFor: "album",
-            children: "Album"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
-            name: "album",
-            id: "album",
-            className: "form-control",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
-              value: null,
-              children: "Choose album"
-            }), albums.map(function (album) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
-                value: album.id,
-                children: album.name
-              }, album.id);
+          }), albums.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+              htmlFor: "album",
+              children: "Album"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("select", {
+              onChange: function onChange(e) {
+                return setAlbumId(e.target.value);
+              },
+              name: "album",
+              id: "album",
+              className: "form-control",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+                value: null,
+                children: "Choose album"
+              }), albums.map(function (album) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+                  value: album.id,
+                  children: album.name
+                }, album.id);
+              })]
             })]
+          }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+              htmlFor: "title",
+              children: "Title"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+              type: "text",
+              value: title,
+              onChange: function onChange(e) {
+                return setTitle(e.target.value);
+              },
+              name: "title",
+              id: "title",
+              className: "form-control"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+              htmlFor: "body",
+              children: "Lyric"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("textarea", {
+              value: body,
+              onChange: function onChange(e) {
+                return setBody(e.target.value);
+              },
+              rows: "10",
+              name: "body",
+              id: "body",
+              className: "form-control"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+            type: "submit",
+            className: "btn btn-primary",
+            children: "Create"
           })]
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-          type: "submit",
-          className: "btn btn-primary",
-          children: "Create"
-        })]
-      })
+        })
+      })]
     })]
   });
 }
