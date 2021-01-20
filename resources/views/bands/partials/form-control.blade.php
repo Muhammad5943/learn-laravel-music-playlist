@@ -1,4 +1,4 @@
-    <div class="form-group py-5">
+<div class="form-group py-5">
     <label for="thumbnail">Thumbnail</label>
     <input type="file" name="thumbnail" id="thumbnail" class="form-control-file">
     @error('thumbnail')

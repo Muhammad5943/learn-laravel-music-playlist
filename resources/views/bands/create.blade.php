@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.backend', ['title' => $title]);
 
 @push('scripts')
     <script>
@@ -11,12 +11,14 @@
 @section('content')
     @include('alert')
 
-    <div class="card card-header">New Band</div>
-    <card-body>
-        <form action="{{ route('bands.create') }}" enctype="multipart/form-data" method="post">
-            @csrf
+    <div class="card">
+        <div class="card-header">{{ $title }}</div>
+        <div class="card-body">
+            <form action="{{ route('bands.create') }}" enctype="multipart/form-data" method="post">
+                @csrf
 
-            @include('bands.partials.form-control')
-        </form>
-    </card-body>
+                @include('bands.partials.form-control')
+            </form>
+        </div>
+    </div>
 @endsection

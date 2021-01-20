@@ -9,10 +9,13 @@ class Genre extends Model
 {
     use HasFactory;
 
-    
+    protected $guarded = [
+        'id'
+    ];
+
     public function bands()
     {
         return $this->belongsToMany(Band::class);
     }
-    
+
 }

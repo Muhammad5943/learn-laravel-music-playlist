@@ -26,6 +26,7 @@ class BandController extends Controller
         return view('bands.create', [
             'genres' => $genres,
             'band' => new Band,
+            'title' => "New Band",
             'submitLable' => 'Create'
         ]);
     }
