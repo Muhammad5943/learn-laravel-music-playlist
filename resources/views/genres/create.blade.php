@@ -11,8 +11,7 @@
 
                 <div class="form-group py-3">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
-                    {{--  value="{{ old('name') ?? $band->name }}"  --}}
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror">
                     @error('name')
                         <div class="mt-2 text-danger">{{ $message }}</div>
                     @enderror

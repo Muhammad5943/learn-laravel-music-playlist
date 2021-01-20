@@ -10,6 +10,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Band</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -18,8 +19,10 @@
                     <tr>
                         <td>{{ $genres->count() * ($genres->currentPage() - 1) + $loop->iteration }}</td>
                         <td>{{ $genre->name }}</td>
+                        <td>{{ count($genre->bands) }}</td>
                         <td>
-
+                            <a href="{{ route('genres.edit', $genre) }}" class="btn btn-primary">Edit</a>
+                            <div endpoint="{{ route('genres.delete', $genre) }}" class="delete d-inline">Delete</div>
                         </td>
                     </tr>
                 @endforeach

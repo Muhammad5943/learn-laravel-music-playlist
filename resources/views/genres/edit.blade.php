@@ -1,15 +1,26 @@
-@extends('layouts.backend')
+@extends('layouts.backend', ['title' => $title])
 
 @section('content')
     @include('alert')
 
-    <div class="card card-header">Edit Band</div>
-    <card-body>
-        <form action="{{ route('bands.edit', $band->slug) }}" enctype="multipart/form-data" method="post">
-            @csrf
-            @method('PUT')
+    <div class="card">
+        <div class="card-header">{{ $title }}</div>
+        <div class="card-body">
+            <form action="{{ route('genres.edit', $genre->slug) }}" method="post">
+                @csrf
+                @method('PUT')
 
-            @include('genres.partials.form-control')
-        </form>
-    </card-body>
+                <div class="form-group py-3">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" value="{{ old('name') ?? $genre->name }}" class="form-control @error('name') is-invalid @enderror">
+                    {{--  value="{{ old('name') ?? $band->name }}"  --}}
+                    @error('name')
+                        <div class="mt-2 text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn btn-primary">{{ $submitLable }}</button>
+            </form>
+        </div>
+    </div>
 @endsection
