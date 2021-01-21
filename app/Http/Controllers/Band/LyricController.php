@@ -52,8 +52,23 @@ class LyricController extends Controller
 
     public function dataTable()
     {
-        $lyric = Lyric::latest()->paginate(2);
+        if (request('band_id') && !request('album_id')) {
+
+            $lyrics = Lyric::where('band_id', request('band_id'))->latest()->get();
+
+        } elseif (request('band_id') && request('album_id')) {
+
+            $lyrics = Lyric::where('band_id', request('band_id'))
+                                ->where('album_id', request('album_id'))
+                                    ->latest()->get();
+
+        } else {
+
+            $lyrics = Lyric::latest()->paginate(16);
+
+        }
+
         // Resource used to make transformer of reserving data
-        return LyricResource::collection($lyric);
+        return LyricResource::collection($lyrics);
     }
 }
