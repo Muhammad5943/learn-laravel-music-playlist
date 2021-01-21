@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Band;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Band\LyricRequest;
 use App\Http\Resources\LyricResource;
 use App\Models\Band;
 use App\Models\Lyric;
@@ -70,5 +71,43 @@ class LyricController extends Controller
 
         // Resource used to make transformer of reserving data
         return LyricResource::collection($lyrics);
+    }
+
+    public function show(Lyric $lyric)
+    {
+        return $lyric;
+    }
+
+    public function edit(Lyric $lyric)
+    {
+        return view('lyrics.edit', [
+            'title' => "Edit Lyric: { $lyric->title }",
+            'lyric' => $lyric
+        ]);
+    }
+
+    public function update(Lyric $lyric, LyricRequest $request)
+    {
+        // return request('band');
+        $band = Band::find(request('band'));
+        // dd($band);
+
+        $lyric->update([
+            // request field backend must be equal with frontend request
+            'band_id' => request('band'),
+            'title' => $request->title,
+            'slug' => Str::slug(request('title')),
+            'body' => $request->body,
+            'album_id' => request('album')
+        ]);
+
+        return response()->json([
+            'message' => 'The lyric was updated into band ' . $band->name
+        ]);
+    }
+
+    public function destroy(Lyric $lyric)
+    {
+        $lyric->delete();
     }
 }

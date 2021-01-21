@@ -13,7 +13,6 @@ function Delete(props) {
             if (value == true) {
                 axios.delete(props.endpoint).then((response) => {
                     // console.log(response.data);
-
                     afterDeleted.remove()
                 })
             }

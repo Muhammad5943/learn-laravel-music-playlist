@@ -1,6 +1,6 @@
-import { filter } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import Remove from '../Delete'
 
 function DataTable(props) {
     const [lyrics, setLyrics] = useState([])
@@ -47,6 +47,7 @@ function DataTable(props) {
 
     return (
         <div>
+            {/* Filter Function */}
             <div className="row mb-3">
                 <div className="col-md-6">
                     <form className="d-flex" onSubmit={filter}>
@@ -62,6 +63,8 @@ function DataTable(props) {
                     </form>
                 </div>
             </div>
+
+            {/* Table */}
             <div className="card">
                 <div className="card-header">
                     {props.title}
@@ -84,7 +87,13 @@ function DataTable(props) {
                                             <td>{lyric.title}</td>
                                             <td>{lyric.band}</td>
                                             <td>{lyric.album}</td>
-                                            <td>Edit</td>
+                                            <td className="d-flex align-item-center">
+                                                <a href={`/lyrics/${lyric.slug}/edit`} className="btn btn-warning">Edit</a>
+                                                {/* Remove feature muust wrapped inside div coz the other delete function in browser inspect wrapped it to */}
+                                                <div className="pl-2">
+                                                    <Remove endpoint={`/lyrics/${lyric.slug}/delete`} />
+                                                </div>
+                                            </td>
                                         </tr>
                                     )
                                 })

@@ -86,9 +86,13 @@ Route::middleware('auth')->group(function () {
         Route::get('table', [LyricController::class, 'table'])->name('lyrics.table');
         Route::get('data-table', [LyricController::class, 'dataTable'])->name('lyrics.datatable');
 
+        // Lyrics Show
+        Route::get('{lyric:slug}', [LyricController::class, 'show'])->name('lyrics.show');
+
         // Lyrics Update
+        // Wildcard "{example:slug}" cant placed in the begin of route, or must under the static router/ url
+        Route::put('{lyric:slug}', [LyricController::class, 'update']);
         Route::get('{lyric:slug}/edit', [LyricController::class, 'edit'])->name('lyrics.edit');
-        Route::put('{lyric:slug}/edit', [LyricController::class, 'update']);
 
         // Lyrics Delete
         Route::delete('{lyric:slug}/delete', [LyricController::class, 'destroy'])->name('lyrics.delete');
