@@ -54,18 +54,18 @@ class LyricController extends Controller
     public function dataTable()
     {
         if (request('band_id') && !request('album_id')) {
-
-            $lyrics = Lyric::where('band_id', request('band_id'))->latest()->get();
+            // should used eager loading to make right query loading
+            $lyrics = Lyric::with('band', 'album')->where('band_id', request('band_id'))->latest()->get();
 
         } elseif (request('band_id') && request('album_id')) {
-
-            $lyrics = Lyric::where('band_id', request('band_id'))
+            // should used eager loading to make right query loading
+            $lyrics = Lyric::with('band', 'album')->where('band_id', request('band_id'))
                                 ->where('album_id', request('album_id'))
                                     ->latest()->get();
 
         } else {
-
-            $lyrics = Lyric::latest()->paginate(16);
+            // should used eager loading to make right query loading
+            $lyrics = Lyric::with('band', 'album')->latest()->paginate(16);
 
         }
 

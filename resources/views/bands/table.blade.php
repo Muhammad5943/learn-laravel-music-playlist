@@ -21,9 +21,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($bands as $band)
+                @foreach ($bands as $index => $band)
                     <tr>
-                        <td>{{ $bands->count() * ($bands->currentPage() - 1) + $loop->iteration }}</td>
+                        <td>{{ $bands->firstItem() + $index }}</td>
                         <td>{{ $band->name }}</td>
                         <td>{{ $band->genres()->get()->implode('name' , ', ') }}</td> {{--  implode('field that wanna show', 'separation')  --}}
                         <td>

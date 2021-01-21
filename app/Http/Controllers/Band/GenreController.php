@@ -51,7 +51,8 @@ class GenreController extends Controller
     {
         return view('genres.table', [
             'title' => 'All Music Genre',
-            'genres' => Genre::latest()->paginate(16)
+            // using eager loading to make query hasn't looping (Table::withCount)->eager_loading
+            'genres' => Genre::withCount('bands')->latest()->paginate(16)
         ]);
     }
 

@@ -38,7 +38,8 @@ class AlbumController extends Controller
     public function table()
     {
         return view('albums.table', [
-            'albums' => Album::latest()->paginate(16),
+            // using eager loading to make query hasn't looping (Table::with)->eager_loading
+            'albums' => Album::with('band')->latest()->paginate(16),
             'title' => 'Album'
         ]);
     }

@@ -15,11 +15,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($genres as $genre)
+                @foreach ($genres as $index => $genre)
                     <tr>
-                        <td>{{ $genres->count() * ($genres->currentPage() - 1) + $loop->iteration }}</td>
+                        <td>{{ $genres->firstItem() + $index }}</td>
                         <td>{{ $genre->name }}</td>
-                        <td>{{ count($genre->bands) }}</td>
+                        <td>{{ $genre->bands_count }}</td>
                         <td>
                             <a href="{{ route('genres.edit', $genre) }}" class="btn btn-primary">Edit</a>
                             <div endpoint="{{ route('genres.delete', $genre) }}" class="delete d-inline">Delete</div>
