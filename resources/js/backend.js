@@ -10,6 +10,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 require('./components/Delete')
 require('./components/lyrics/Create')
+require('./components/lyrics/Table')
 
 //  For Declare adding css and js properties you must declare on wabpack.mix.js too
 

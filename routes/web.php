@@ -84,6 +84,7 @@ Route::middleware('auth')->group(function () {
 
         // Lyrics Table
         Route::get('table', [LyricController::class, 'table'])->name('lyrics.table');
+        Route::get('data-table', [LyricController::class, 'dataTable'])->name('lyrics.datatable');
 
         // Lyrics Update
         Route::get('{lyric:slug}/edit', [LyricController::class, 'edit'])->name('lyrics.edit');
