@@ -27,7 +27,7 @@
                         <div class="card-body">
                             @foreach ($album->lyrics as $lyric)
                                 <div>
-                                    <a href="#" class="d-block">{{ $lyric->title }}</a>
+                                    <a href="{{ route('lyrics.show', [$lyric->band, $lyric]) }}" class="d-block">{{ $lyric->title }}</a>
                                 </div>
                             @endforeach
                         </div>

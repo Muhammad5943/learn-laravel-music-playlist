@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Band;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Band\LyricRequest;
 use App\Http\Resources\LyricResource;
+use App\Models\Album;
 use App\Models\Band;
 use App\Models\Lyric;
 use Illuminate\Support\Str;
@@ -73,9 +74,17 @@ class LyricController extends Controller
         return LyricResource::collection($lyrics);
     }
 
-    public function show(Lyric $lyric)
+    public function show(Band $band, Lyric $lyric)
     {
-        return $lyric;
+        $album = Album::find($lyric->album_id);
+        $lyrics = $album->lyrics;
+
+        return view('lyrics.show', [
+            'title' => "{$band->name} - {$lyric->title}",
+            'lyric' => $lyric,
+            'band' => $band,
+            'lyrics' => $lyrics
+        ]);
     }
 
     public function edit(Lyric $lyric)

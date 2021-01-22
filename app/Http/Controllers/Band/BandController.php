@@ -29,7 +29,7 @@ class BandController extends Controller
             'title' => $band->name,
             'band' => $band,
             // 'albums' => $band->albums()->latest('year')->get() // make query have looping render
-            'albums' => $band->albums()->withCount('lyrics')->with('lyrics')->latest('year')->get() // can make more faster to load data coz use eager loading
+            'albums' => $band->albums()->withCount('lyrics')->with('lyrics', 'lyrics.band')->latest('year')->get() // can make more faster to load data coz use eager loading
         ]);
     }
 
