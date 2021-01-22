@@ -77,7 +77,7 @@ class LyricController extends Controller
     public function show(Band $band, Lyric $lyric)
     {
         $album = Album::find($lyric->album_id);
-        $lyrics = $album->lyrics;
+        $lyrics = $album->lyrics()->where('id', '!=', $lyric->id)->get();
 
         return view('lyrics.show', [
             'title' => "{$band->name} - {$lyric->title}",

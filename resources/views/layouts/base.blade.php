@@ -9,7 +9,6 @@
 
     <title>{{ $title ?? config('app.name') }}</title>
 
-
     <!-- Styles -->
     @yield('baseStyles')
 </head>

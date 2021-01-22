@@ -7,6 +7,7 @@ use App\Http\Controllers\Band\AlbumController;
 use App\Http\Controllers\Band\BandController;
 use App\Http\Controllers\Band\GenreController;
 use App\Http\Controllers\Band\LyricController;
+use App\Http\Controllers\Band\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ use App\Http\Controllers\Band\LyricController;
 Auth::routes(/* ['veriry' => true] (Jika ingin menggunakan verify email) */);
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('search', SearchController::class)->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
