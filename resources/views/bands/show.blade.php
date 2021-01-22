@@ -14,7 +14,12 @@
             </div>
 
             @foreach ($albums as $album)
-                @if ($album->lyrics()->count())
+                {{--  // when you using query sorting like this "$band->albums()->latest('year')->get()" (this was been problem) --}}
+                {{--  @if ($album->lyrics()->count())  // load looping query --}}
+
+                {{-- when you using query sorting like this 'albums' => $band->albums()->withCount('lyrics')->latest('year')->get() --}}
+                {{--  its mean add withCount attributes  --}}
+                @if ($album->lyrics_count)
                     <div class="card mb-3">
                         <div class="card-header">
                             {{ $album->name }} - {{ $album->year }}

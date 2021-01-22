@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::get('table', [BandController::class, 'table'])->name('bands.table');
 
         // Band Show
-        Route::get('{band:slug}', [BandController::class, 'show'])->name('bands.show');
+        Route::get('{band:slug}', [BandController::class, 'show'])->name('bands.show')->withoutMiddleware('auth');
 
         // Band Update
         Route::get('{band:slug}/edit', [BandController::class, 'edit'])->name('bands.edit');

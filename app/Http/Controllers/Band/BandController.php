@@ -28,7 +28,8 @@ class BandController extends Controller
         return view('bands.show', [
             'title' => $band->name,
             'band' => $band,
-            'albums' => $band->albums()->latest('year')->get()
+            // 'albums' => $band->albums()->latest('year')->get() // make query have looping render
+            'albums' => $band->albums()->withCount('lyrics')->with('lyrics')->latest('year')->get() // can make more faster to load data coz use eager loading
         ]);
     }
 
