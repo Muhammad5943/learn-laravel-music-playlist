@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
         Route::get('table', [GenreController::class, 'table'])->name('genres.table');
 
         // Genre Update
+        Route::get('{genre:slug}', [GenreController::class, 'show'])->name('genres.show')->withoutMiddleware('auth');
         Route::get('{genre:slug}/edit', [GenreController::class, 'edit'])->name('genres.edit');
         Route::put('{genre:slug}/edit', [GenreController::class, 'update']);
 

@@ -7,7 +7,7 @@
         <h3>{{ $band->name }}</h3>
             <div class="mb-4">
                 @foreach ($band->genres as $genre)
-                    <a href="#" class="text-secondary">
+                    <a href="{{ route('genres.show', $genre) }}" class="text-secondary">
                         {{ $genre->name }}
                     </a>
                 @endforeach

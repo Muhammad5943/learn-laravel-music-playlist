@@ -18,6 +18,17 @@ class GenreController extends Controller
         ]);
     }
 
+    public function show(Genre $genre)
+    {
+        return view('genres.show', [
+            'title' => "{$genre->name}",
+            'genre' => $genre,
+            // when you wanted to make paginate in page, you must madi the last attribute as a builder first
+            // 'bands' => $genre->bands
+            'bands' => $genre->bands()->latest()->paginate(9)
+        ]);
+    }
+
     public function store(GenreRequest $request)
     {
         Genre::create([
