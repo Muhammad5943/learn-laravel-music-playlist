@@ -5,8 +5,8 @@
     <div class="row">
         @foreach ($bands as $band)
             <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset("storage/". $band->thumbnail) }}" class="#" alt="{{ $band->name }}" />
+                <div class="card mb-4">
+                    <img style="object-fit: cover; object-position: center" height="230px" src="{{ $band->picture }}" class="card-img-top" alt="{{ $band->name }}" />
                     <div class="card-body">
                         {{$band->name}}
 
@@ -24,5 +24,6 @@
             </div>
         @endforeach
     </div>
+    {{ $bands->links() }}
 </div>
 @endsection
