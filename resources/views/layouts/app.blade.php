@@ -24,4 +24,12 @@
 
         @yield('content')
     </div>
+
+    <footer class="mt-5 border-top py-5">
+        <div class="container">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore amet deleniti velit.
+            Perspiciatis corporis corrupti quos porro eaque cupiditate atque. Similique nulla,
+            officiis adipisci maiores voluptatibus ea dolor dolore esse!
+        </div>
+    </footer>
 @endsection

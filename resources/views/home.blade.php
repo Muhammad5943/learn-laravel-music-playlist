@@ -8,7 +8,9 @@
                 <div class="card mb-4">
                     <img style="object-fit: cover; object-position: center" height="230px" src="{{ $band->picture }}" class="card-img-top" alt="{{ $band->name }}" />
                     <div class="card-body">
-                        {{$band->name}}
+                        <a href="{{ route('bands.show', $band )}}">
+                            {{$band->name}}
+                        </a>
 
                         <div>
                             {{--

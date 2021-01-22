@@ -23,6 +23,15 @@ class BandController extends Controller
         ]);
     }
 
+    public function show(Band $band)
+    {
+        return view('bands.show', [
+            'title' => $band->name,
+            'band' => $band,
+            'albums' => $band->albums()->latest('year')->get()
+        ]);
+    }
+
     public function create()
     {
         $genres = Genre::get();
