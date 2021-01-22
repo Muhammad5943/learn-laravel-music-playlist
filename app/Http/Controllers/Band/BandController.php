@@ -49,6 +49,10 @@ class BandController extends Controller
         $band = Band::Create([
             'name' => $bandrequest->name,
             'slug' => Str::slug(request('name')),
+            /*
+                you can set image file in public by using "store('public/images/band')"
+                or you can using "store('images/band')" but you must set the "FILESYSTEM_DRIVER = public" in .env file
+            */
             'thumbnail' => request()->file('thumbnail') ? request()->file('thumbnail')->store('images/band') : null
         ]);
 
